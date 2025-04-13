@@ -25,6 +25,17 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
     }
+    
+    // Get a region around current location with specific radius in metres
+    func getRegionAroundCurrentLocation(radiusInMetres: CLLocationDistance = 10000) -> MKCoordinateRegion? {
+        guard let location = location else { return nil }
+        
+        return MKCoordinateRegion(
+            center: location.coordinate,
+            latitudinalMeters: radiusInMetres,
+            longitudinalMeters: radiusInMetres
+        )
+    }
 }
     
     
